@@ -1,0 +1,26 @@
+[
+  {
+    "number": 1,
+    "title": "פרק 1 - המבחן",
+    "slug": "01-the-test",
+    "file": "01-the-test.txt"
+  },
+  {
+    "number": 2,
+    "title": "פרק 2 - 9 שנים מאוחר יותר",
+    "slug": "02-nine-years-later",
+    "file": "02-nine-years-later.txt"
+  },
+  {
+    "number": 3,
+    "title": "פרק 3 - הילד ממקאפו",
+    "slug": "03-the-boy-from-makapu",
+    "file": "03-the-boy-from-makapu.txt"
+  },
+  {
+    "number": 4,
+    "title": "פרק 4 - עבודה כנה",
+    "slug": "04-honest-work",
+    "file": "04-honest-work.txt"
+  }
+]
