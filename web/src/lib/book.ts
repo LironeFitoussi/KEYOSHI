@@ -1,29 +1,53 @@
-import { readFile } from "node:fs/promises";
-import path from "node:path";
+import "server-only";
 
-const TRANSLATIONS_DIR = path.join(process.cwd(), "..", "translations");
+import { cache } from "react";
+import { getDatabase } from "@/lib/mongodb";
 
 export interface ChapterMeta {
   number: number;
   title: string;
   slug: string;
-  file: string;
 }
 
-export async function getManifest(): Promise<ChapterMeta[]> {
-  const raw = await readFile(path.join(TRANSLATIONS_DIR, "manifest.json"), "utf-8");
-  const manifest = JSON.parse(raw) as ChapterMeta[];
-  return [...manifest].sort((a, b) => a.number - b.number);
+interface ChapterDocument extends ChapterMeta {
+  bookSlug: string;
+  body: string;
+  published: boolean;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
-export async function getChapterBySlug(slug: string): Promise<{ meta: ChapterMeta; body: string } | null> {
-  const manifest = await getManifest();
-  const meta = manifest.find((c) => c.slug === slug);
-  if (!meta) return null;
+const BOOK_SLUG = process.env.KEYOSHI_BOOK_SLUG ?? "the-rise-of-kyoshi-he";
 
-  const raw = await readFile(path.join(TRANSLATIONS_DIR, meta.file), "utf-8");
-  const [, ...rest] = raw.split("\n\n");
-  const body = rest.join("\n\n").trim();
+export const getManifest = cache(async (): Promise<ChapterMeta[]> => {
+  const db = await getDatabase();
+  return db
+    .collection<ChapterDocument>("chapters")
+    .find(
+      { bookSlug: BOOK_SLUG, published: true },
+      { projection: { _id: 0, number: 1, title: 1, slug: 1 } }
+    )
+    .sort({ number: 1 })
+    .toArray();
+});
 
-  return { meta, body };
-}
+export const getChapterBySlug = cache(
+  async (slug: string): Promise<{ meta: ChapterMeta; body: string } | null> => {
+    const db = await getDatabase();
+    const chapter = await db.collection<ChapterDocument>("chapters").findOne(
+      { bookSlug: BOOK_SLUG, slug, published: true },
+      { projection: { _id: 0, number: 1, title: 1, slug: 1, body: 1 } }
+    );
+
+    if (!chapter) return null;
+
+    return {
+      meta: {
+        number: chapter.number,
+        title: chapter.title,
+        slug: chapter.slug,
+      },
+      body: chapter.body,
+    };
+  }
+);

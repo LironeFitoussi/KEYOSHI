@@ -4,6 +4,8 @@ import { getChapterBySlug, getManifest } from "@/lib/book";
 import { ChapterBody } from "@/components/ChapterBody";
 import { ReaderToolbar } from "@/components/ReaderToolbar";
 
+export const dynamic = "force-dynamic";
+
 export default async function ChapterPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const [chapter, manifest] = await Promise.all([getChapterBySlug(slug), getManifest()]);

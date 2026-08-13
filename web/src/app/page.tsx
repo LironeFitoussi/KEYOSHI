@@ -2,6 +2,8 @@ import Link from "next/link";
 import { getManifest } from "@/lib/book";
 import { ReaderToolbar } from "@/components/ReaderToolbar";
 
+export const dynamic = "force-dynamic";
+
 export default async function HomePage() {
   const chapters = await getManifest();
 
