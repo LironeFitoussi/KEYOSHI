@@ -24,6 +24,12 @@
     "file": "04-honest-work.txt"
   },
   {
+    "number": 5,
+    "title": "פרק 5 - התגלויות",
+    "slug": "05-revelations",
+    "file": "05-revelations.txt"
+  },
+  {
     "number": 6,
     "title": "פרק 6 - הבטחות",
     "slug": "06-promises",

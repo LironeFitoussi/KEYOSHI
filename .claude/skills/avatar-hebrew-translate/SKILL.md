@@ -41,6 +41,7 @@ Reference sample: `part_translated.docx` (chapters 1-3, professionally translate
 | Dai Fei (gang) | דאופיי | |
 | neutral jing | ג'ינג ניטרלי | keep untranslated martial term + gloss once if new reader |
 | Pai Sho | פאי שו | |
+| Ummi | אוּמי | woman from Kuruk's past, mentioned ch.5 |
 | Tagaka | טאגאקה | Fifth Nation (pirate) leader |
 | Avatar Salai | אווטאר סאלאי | past Avatar, mentioned alongside Yangchen |
 | daofei (outlaw gangs) | דאופיי | generic term for outlaw/pirate gangs, distinct from the Dai Fei gang name |

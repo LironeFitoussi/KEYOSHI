@@ -22,12 +22,12 @@ export default async function ChapterPage({ params }: { params: Promise<{ slug: 
           <Link href="/" className="text-sm text-muted hover:text-foreground transition-colors">
             ← תוכן העניינים
           </Link>
-          <ReaderToolbar />
+          <ReaderToolbar chapterSlug={chapter.meta.slug} chapterTitle={chapter.meta.title} />
         </div>
       </div>
 
       <div className="flex-1 pt-10">
-        <ChapterBody title={chapter.meta.title} paragraphs={paragraphs} />
+        <ChapterBody title={chapter.meta.title} paragraphs={paragraphs} chapterSlug={chapter.meta.slug} />
       </div>
 
       <nav className="mx-auto flex w-full max-w-2xl items-center justify-between gap-4 border-t border-border px-6 py-6 text-sm">
