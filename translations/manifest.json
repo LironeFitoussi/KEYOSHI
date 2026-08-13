@@ -36,6 +36,12 @@
     "file": "06-promises.txt"
   },
   {
+    "number": 7,
+    "title": "פרק 7 - קרחון הענק",
+    "slug": "07-the-iceberg",
+    "file": "07-the-iceberg.txt"
+  },
+  {
     "number": 8,
     "title": "פרק 8 - השבר",
     "slug": "08-the-fracture",
@@ -52,5 +58,59 @@
     "title": "פרק 10 - הרוח",
     "slug": "10-the-spirit",
     "file": "10-the-spirit.txt"
+  },
+  {
+    "number": 11,
+    "title": "פרק 11 - הירושה",
+    "slug": "11-the-inheritance",
+    "file": "11-the-inheritance.txt"
+  },
+  {
+    "number": 12,
+    "title": "פרק 12 - ההחלטה",
+    "slug": "12-the-decision",
+    "file": "12-the-decision.txt"
+  },
+  {
+    "number": 13,
+    "title": "פרק 13 - הסתגלות",
+    "slug": "13-adaptation",
+    "file": "13-adaptation.txt"
+  },
+  {
+    "number": 14,
+    "title": "פרק 14 - ההיכרות",
+    "slug": "14-the-introduction",
+    "file": "14-the-introduction.txt"
+  },
+  {
+    "number": 15,
+    "title": "פרק 15 - בריחה",
+    "slug": "15-escape",
+    "file": "15-escape.txt"
+  },
+  {
+    "number": 16,
+    "title": "פרק 16 - ההסכם",
+    "slug": "16-the-agreement",
+    "file": "16-the-agreement.txt"
+  },
+  {
+    "number": 17,
+    "title": "פרק 17 - התחייבויות",
+    "slug": "17-obligations",
+    "file": "17-obligations.txt"
+  },
+  {
+    "number": 18,
+    "title": "פרק 18 - העיירה",
+    "slug": "18-the-town",
+    "file": "18-the-town.txt"
+  },
+  {
+    "number": 19,
+    "title": "פרק 19 - החיה",
+    "slug": "19-the-beast",
+    "file": "19-the-beast.txt"
   }
 ]
