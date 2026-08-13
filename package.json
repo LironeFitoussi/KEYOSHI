@@ -1,0 +1,26 @@
+{
+  "name": "keyoshi",
+  "version": "0.1.0",
+  "description": "Split a book into chunks and translate to Hebrew using AI",
+  "type": "module",
+  "private": true,
+  "bin": {
+    "keyoshi": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx src/cli.ts",
+    "translate": "tsx src/cli.ts translate"
+  },
+  "dependencies": {
+    "ai": "^5.0.0",
+    "commander": "^12.1.0",
+    "pdf-parse": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/pdf-parse": "^1.1.5",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}

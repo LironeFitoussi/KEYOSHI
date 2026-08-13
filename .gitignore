@@ -1,0 +1,5 @@
+node_modules/
+dist/
+*.he.md
+.env
+.env.local
