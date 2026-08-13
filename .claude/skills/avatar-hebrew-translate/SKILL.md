@@ -41,6 +41,10 @@ Reference sample: `part_translated.docx` (chapters 1-3, professionally translate
 | Dai Fei (gang) | דאופיי | |
 | neutral jing | ג'ינג ניטרלי | keep untranslated martial term + gloss once if new reader |
 | Pai Sho | פאי שו | |
+| Tagaka | טאגאקה | Fifth Nation (pirate) leader |
+| Avatar Salai | אווטאר סאלאי | past Avatar, mentioned alongside Yangchen |
+| daofei (outlaw gangs) | דאופיי | generic term for outlaw/pirate gangs, distinct from the Dai Fei gang name |
+| jian (sword) | חרב ג'יאן | keep "ג'יאן" transliterated, gloss as sword type |
 
 Keep transliterating new proper nouns the same way: phonetic Hebrew, no nikud except where needed for disambiguation on first use (e.g. קֵלסאנג, פֶּנְגְ-פֶּנְג already carry partial nikud in source — preserve that pattern for new hard-to-read names).
 

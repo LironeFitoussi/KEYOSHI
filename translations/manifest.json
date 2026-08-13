@@ -22,5 +22,11 @@
     "title": "פרק 4 - עבודה כנה",
     "slug": "04-honest-work",
     "file": "04-honest-work.txt"
+  },
+  {
+    "number": 6,
+    "title": "פרק 6 - הבטחות",
+    "slug": "06-promises",
+    "file": "06-promises.txt"
   }
 ]
