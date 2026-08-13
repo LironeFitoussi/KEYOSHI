@@ -34,5 +34,23 @@
     "title": "פרק 6 - הבטחות",
     "slug": "06-promises",
     "file": "06-promises.txt"
+  },
+  {
+    "number": 8,
+    "title": "פרק 8 - השבר",
+    "slug": "08-the-fracture",
+    "file": "08-the-fracture.txt"
+  },
+  {
+    "number": 9,
+    "title": "פרק 9 - אמצעים נואשים",
+    "slug": "09-desperate-measures",
+    "file": "09-desperate-measures.txt"
+  },
+  {
+    "number": 10,
+    "title": "פרק 10 - הרוח",
+    "slug": "10-the-spirit",
+    "file": "10-the-spirit.txt"
   }
 ]
