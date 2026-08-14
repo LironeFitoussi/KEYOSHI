@@ -112,5 +112,17 @@
     "title": "פרק 19 - החיה",
     "slug": "19-the-beast",
     "file": "19-the-beast.txt"
+  },
+  {
+    "number": 20,
+    "title": "פרק 20 - מוריו של האווטאר",
+    "slug": "20-the-avatars-masters",
+    "file": "20-the-avatars-masters.txt"
+  },
+  {
+    "number": 21,
+    "title": "פרק 21 - הכנות",
+    "slug": "21-preparations",
+    "file": "21-preparations.txt"
   }
 ]

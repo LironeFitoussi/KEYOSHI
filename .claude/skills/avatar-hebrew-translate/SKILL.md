@@ -80,6 +80,9 @@ Source chunks: `pdf/chapters/<NN>_<slug>.txt` — one file per chapter, already 
 | Kirima | קירימה | waterbender, Flying Opera Company |
 | Wong | ווֹנג | earthbender, Flying Opera Company, "the Flitting Sparrowkeet" |
 | Lao Ge | לאו גה | old man, Flying Opera Company, secretly Taigawi the Immortal |
+| Tieguai the Immortal | טייגוואי הנצחי | legendary long-lived figure mentioned in Jesa's journal, ch.21; likely same as Taigawi above (source spelling varies) |
+| Guru Shoken | גורו שוֹקֶן | ancient heretical philosopher, contemporary of Laghima, ch.21 |
+| chakra(s) | צ'אקרה / צ'אקרות | energy centers concept, introduced by Lao Ge, ch.21 |
 | Taihua Mountains | הרי טאיהואה | ch.18, mountain range south of Ba Sing Se |
 | Si Wong (desert) | סי וונג | ch.18, source of red dust storms |
 | Hujiang | חוג'יאנג | daofei outlaw town in the Taihua Mountains, ch.18-19 |
@@ -95,6 +98,10 @@ Source chunks: `pdf/chapters/<NN>_<slug>.txt` — one file per chapter, already 
 | lei tai | ליי טאי | platform fighting-challenge ring/tournament, ch.18 |
 | Te Sihung (Governor Te) | טה סיהונג (המושל טה) | Eastern Provinces governor, keeps a prison instead of executing criminals, ch.18 |
 | Poems of Laghima | שירי לגהימה | book, gift Governor Te once sent to Yon |
+| The Architect (Jianzhu's epithet) | האדריכל | daofei nickname for Jianzhu, used by Lao Ge, ch.20 |
+| Jianzhu the Gravedigger / the Butcher of Zhulu Pass | ג'יאנזו קברן / קצב מעבר זולו | daofei epithets for Jianzhu's reputation, ch.20 |
+| Topknot (Rangi's nickname) | קוקו | Kirima's teasing nickname for Rangi, first used ch.14, recurring |
+| septapox | ספטפוקס | disease/curse used as a hyperbolic comparison, ch.20 |
 
 Keep transliterating new proper nouns the same way: phonetic Hebrew, no nikud except where needed for disambiguation on first use (e.g. קֵלסאנג, פֶּנְגְ-פֶּנְג already carry partial nikud in source — preserve that pattern for new hard-to-read names).
 

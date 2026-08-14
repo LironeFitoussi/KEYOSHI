@@ -40,12 +40,15 @@ After writing/updating chapter files, update `translations/manifest.json` — an
 
 Rewrite the whole manifest file each time (read-modify-write), don't hand-append JSON.
 
+Writing these files is not the end of the job — the deployed web app reads chapters from MongoDB, not from `translations/`. The final process step below pushes them there.
+
 ## Process for a translation job
 
 1. Figure out scope from the request: one chapter, a range (e.g. "05 through 10"), or "the whole book" / "everything remaining."
 2. For each chapter number in scope: read `pdf/chapters/NN_slug.txt`, translate per the skill's voice guide, write `translations/NN-slug.txt` (same number and slug, hyphen instead of underscore), update the manifest.
 3. Re-read your own Hebrew output before finishing — it must read as natural literary Hebrew, not a translation. Check terminology against the skill's table for consistency with prior chapters.
-4. Report back: which chapters were written/updated, and any new terminology you added to the skill file.
+4. After all chapters in scope are written and the manifest is updated, push them to MongoDB: from `web/`, run `npm run seed:mongodb`. This reads `translations/manifest.json` and upserts every chapter into the `chapters` collection — safe to run even if some chapters were already seeded (idempotent upsert on `bookSlug`+`slug`). Requires `web/.env` (`MONGODB_URI`, `MONGODB_DB`, `KEYOSHI_BOOK_SLUG`) to already be set up — if the command fails because `MONGODB_URI` is missing, report that back rather than trying to fix env config yourself.
+5. Report back: which chapters were written/updated, whether the DB seed succeeded, and any new terminology you added to the skill file.
 
 When asked for "the whole book" or a large range, work through chapters one at a time in order rather than trying to hold the whole book in context at once — read, translate, write, move to the next.
 
