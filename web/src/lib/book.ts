@@ -9,6 +9,13 @@ export interface ChapterMeta {
   slug: string;
 }
 
+export interface BookMeta {
+  slug: string;
+  title: string;
+  originalTitle?: string;
+  language: string;
+}
+
 interface ChapterDocument extends ChapterMeta {
   bookSlug: string;
   body: string;
@@ -18,6 +25,14 @@ interface ChapterDocument extends ChapterMeta {
 }
 
 const BOOK_SLUG = process.env.KEYOSHI_BOOK_SLUG ?? "the-rise-of-kyoshi-he";
+
+export const getBook = cache(async (): Promise<BookMeta | null> => {
+  const db = await getDatabase();
+  return db.collection<BookMeta>("books").findOne(
+    { slug: BOOK_SLUG },
+    { projection: { _id: 0, slug: 1, title: 1, originalTitle: 1, language: 1 } }
+  );
+});
 
 export const getManifest = cache(async (): Promise<ChapterMeta[]> => {
   const db = await getDatabase();

@@ -1,17 +1,18 @@
 import Link from "next/link";
-import { getManifest } from "@/lib/book";
+import { getBook, getManifest } from "@/lib/book";
 import { ReaderToolbar } from "@/components/ReaderToolbar";
 
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  const chapters = await getManifest();
+  const [book, chapters] = await Promise.all([getBook(), getManifest()]);
+  const bookTitle = book?.title ?? "הספר אינו זמין";
 
   return (
     <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col px-6 py-10">
       <header className="mb-10 flex items-start justify-between gap-4">
         <div>
-          <h1 className="font-frank-ruhl text-3xl font-medium">עלייתה של קיושי</h1>
+          <h1 className="font-frank-ruhl text-3xl font-medium">{bookTitle}</h1>
           <p className="mt-1 text-sm text-muted">
             {chapters.length} {chapters.length === 1 ? "פרק זמין" : "פרקים זמינים"}
           </p>

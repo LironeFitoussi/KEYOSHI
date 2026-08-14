@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# KEYOSHI Reader
 
-## Getting Started
+Next.js reader application for Vercel. Published books and chapters are read from MongoDB at runtime; the application does not read chapter content from the local filesystem.
 
-First, run the development server:
+## Architecture
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```text
+web/
+  src/app/            Next.js routes and UI
+  src/lib/mongodb.ts  shared MongoDB connection
+  src/lib/book.ts     server-only book repository
+  scripts/            one-time data import tools
+translations/         source material for imports; not used by the deployed app
+src/                  standalone translation CLI
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Browser-only reader preferences, bookmarks, and highlights remain in `localStorage`. Moving personal data to MongoDB should be done together with authentication so one reader cannot access another reader's notes.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Local setup
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Copy `.env.example` to `.env.local`.
+2. Set `MONGODB_URI` to a MongoDB Atlas or local MongoDB connection string.
+3. Install dependencies from this directory with `npm install`.
+4. Import the translated chapters with `npm run seed:mongodb`.
+5. Start the app with `npm run dev`.
 
-## Learn More
+The importer is idempotent: rerunning it updates matching chapters instead of duplicating them. It also creates unique indexes for chapter slugs and chapter numbers within a book.
 
-To learn more about Next.js, take a look at the following resources:
+See [`docs/database.md`](docs/database.md) for the collection schema and indexes.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deploy to Vercel
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Import the Git repository into Vercel.
+2. Set the project's **Root Directory** to `web`.
+3. Add `MONGODB_URI`, `MONGODB_DB`, and `KEYOSHI_BOOK_SLUG` in Project Settings → Environment Variables.
+4. Deploy. Vercel detects Next.js and runs `npm run build`.
+5. Check `/api/health`; a successful connection returns HTTP 200.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Run `npm run seed:mongodb` locally before the first production visit. The seed command reads the repository's `translations/` directory, while the deployed reader only reads MongoDB.

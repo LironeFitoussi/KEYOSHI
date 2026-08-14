@@ -1,5 +1,7 @@
 # KEYOSHI
 
+> The deployable reader lives in `web/`. See `web/README.md` for MongoDB setup and Vercel deployment.
+
 Split a book (PDF) into chunks and translate to Hebrew using AI.
 
 ## Usage
