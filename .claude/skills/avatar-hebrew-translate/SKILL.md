@@ -102,6 +102,10 @@ Source chunks: `pdf/chapters/<NN>_<slug>.txt` — one file per chapter, already 
 | Jianzhu the Gravedigger / the Butcher of Zhulu Pass | ג'יאנזו קברן / קצב מעבר זולו | daofei epithets for Jianzhu's reputation, ch.20 |
 | Topknot (Rangi's nickname) | קוקו | Kirima's teasing nickname for Rangi, first used ch.14, recurring |
 | septapox | ספטפוקס | disease/curse used as a hyperbolic comparison, ch.20 |
+| Saiful | סייפול | young guardsman, secretly Hui's spy, ch.22 |
+| Four Shadows Guan | גואן ארבע-הצללים | injured Autumn Bloom fighter interrogated by Jianzhu, ch.22 |
+| Band of the Scorpion | חבורת העקרב | small desert daofei group from Jianzhu's younger days, mentioned ch.22 |
+| eel hound | כלב-צלופח | fast cross-country mount, second only to a flying bison, ch.22 |
 
 Keep transliterating new proper nouns the same way: phonetic Hebrew, no nikud except where needed for disambiguation on first use (e.g. קֵלסאנג, פֶּנְגְ-פֶּנְג already carry partial nikud in source — preserve that pattern for new hard-to-read names).
 
