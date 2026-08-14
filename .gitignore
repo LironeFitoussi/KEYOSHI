@@ -3,3 +3,4 @@ dist/
 *.he.md
 .env
 .env.local
+atlas-credentials.env
