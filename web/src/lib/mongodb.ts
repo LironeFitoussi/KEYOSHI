@@ -26,12 +26,13 @@ function createClientPromise(): Promise<MongoClient> {
 }
 
 export function getMongoClient(): Promise<MongoClient> {
-  if (process.env.NODE_ENV === "development") {
-    globalThis.keyoshiMongoClientPromise ??= createClientPromise();
-    return globalThis.keyoshiMongoClientPromise;
+  if (!globalThis.keyoshiMongoClientPromise) {
+    globalThis.keyoshiMongoClientPromise = createClientPromise().catch((error) => {
+      globalThis.keyoshiMongoClientPromise = undefined;
+      throw error;
+    });
   }
 
-  globalThis.keyoshiMongoClientPromise ??= createClientPromise();
   return globalThis.keyoshiMongoClientPromise;
 }
 

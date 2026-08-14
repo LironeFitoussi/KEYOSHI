@@ -26,6 +26,8 @@ Browser-only reader preferences, bookmarks, and highlights remain in `localStora
 
 If Node reports `querySrv ECONNREFUSED` while resolving an Atlas URI, set the optional `MONGODB_DNS_SERVERS` variable to comma-separated DNS server IP addresses. It is normally unnecessary on Vercel.
 
+If a local Next.js runtime still cannot perform SRV lookups, use Atlas's standard `mongodb://` connection string locally instead of `mongodb+srv://`. The application supports both formats.
+
 The importer is idempotent: rerunning it updates matching chapters instead of duplicating them. It also creates unique indexes for chapter slugs and chapter numbers within a book.
 
 See [`docs/database.md`](docs/database.md) for the collection schema and indexes.
