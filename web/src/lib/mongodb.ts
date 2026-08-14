@@ -1,6 +1,7 @@
 import "server-only";
 
 import { MongoClient, type Db } from "mongodb";
+import { configureMongoDns } from "@/lib/dns";
 
 const databaseName = process.env.MONGODB_DB ?? "keyoshi";
 
@@ -15,6 +16,8 @@ function createClientPromise(): Promise<MongoClient> {
       "MONGODB_URI is not configured. Add it to web/.env.local locally and to the Vercel project environment."
     );
   }
+
+  configureMongoDns();
 
   return new MongoClient(uri, {
     appName: "keyoshi-reader",

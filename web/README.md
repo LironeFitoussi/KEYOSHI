@@ -24,6 +24,8 @@ Browser-only reader preferences, bookmarks, and highlights remain in `localStora
 4. Import the translated chapters with `npm run seed:mongodb`.
 5. Start the app with `npm run dev`.
 
+If Node reports `querySrv ECONNREFUSED` while resolving an Atlas URI, set the optional `MONGODB_DNS_SERVERS` variable to comma-separated DNS server IP addresses. It is normally unnecessary on Vercel.
+
 The importer is idempotent: rerunning it updates matching chapters instead of duplicating them. It also creates unique indexes for chapter slugs and chapter numbers within a book.
 
 See [`docs/database.md`](docs/database.md) for the collection schema and indexes.

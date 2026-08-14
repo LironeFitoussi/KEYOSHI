@@ -3,6 +3,7 @@ import path from "node:path";
 import process from "node:process";
 import { loadEnvConfig } from "@next/env";
 import { MongoClient } from "mongodb";
+import { configureMongoDns } from "../src/lib/dns";
 
 interface SourceChapter {
   number: number;
@@ -11,43 +12,46 @@ interface SourceChapter {
   file: string;
 }
 
-const webRoot = process.cwd();
-loadEnvConfig(webRoot);
+async function main() {
+  const webRoot = process.cwd();
+  loadEnvConfig(webRoot);
 
-const repositoryRoot = path.resolve(webRoot, "..");
-const translationsDirectory = path.join(repositoryRoot, "translations");
-const uri = process.env.MONGODB_URI;
-const databaseName = process.env.MONGODB_DB ?? "keyoshi";
-const bookSlug = process.env.KEYOSHI_BOOK_SLUG ?? "the-rise-of-kyoshi-he";
+  const repositoryRoot = path.resolve(webRoot, "..");
+  const translationsDirectory = path.join(repositoryRoot, "translations");
+  const uri = process.env.MONGODB_URI;
+  const databaseName = process.env.MONGODB_DB ?? "keyoshi";
+  const bookSlug = process.env.KEYOSHI_BOOK_SLUG ?? "the-rise-of-kyoshi-he";
 
-if (!uri) {
-  throw new Error("MONGODB_URI is required. Copy web/.env.example to web/.env.local and fill it in.");
-}
+  if (!uri) {
+    throw new Error("MONGODB_URI is required. Copy web/.env.example to web/.env and fill it in.");
+  }
 
-const manifest = JSON.parse(
-  await readFile(path.join(translationsDirectory, "manifest.json"), "utf8")
-) as SourceChapter[];
+  configureMongoDns();
 
-const chapters = await Promise.all(
-  manifest.map(async ({ file, ...meta }) => {
-    const raw = await readFile(path.join(translationsDirectory, file), "utf8");
-    const blocks = raw.replace(/\r\n/g, "\n").split(/\n{2,}/);
-    const body = blocks.slice(1).join("\n\n").trim();
+  const manifest = JSON.parse(
+    await readFile(path.join(translationsDirectory, "manifest.json"), "utf8")
+  ) as SourceChapter[];
 
-    if (!body) throw new Error(`Chapter ${file} has no body.`);
+  const chapters = await Promise.all(
+    manifest.map(async ({ file, ...meta }) => {
+      const raw = await readFile(path.join(translationsDirectory, file), "utf8");
+      const blocks = raw.replace(/\r\n/g, "\n").split(/\n{2,}/);
+      const body = blocks.slice(1).join("\n\n").trim();
 
-    return { ...meta, body };
-  })
-);
+      if (!body) throw new Error(`Chapter ${file} has no body.`);
 
-const client = new MongoClient(uri, { appName: "keyoshi-seed" });
+      return { ...meta, body };
+    })
+  );
 
-try {
-  await client.connect();
-  const db = client.db(databaseName);
-  const now = new Date();
+  const client = new MongoClient(uri, { appName: "keyoshi-seed" });
 
-  await db.collection("books").updateOne(
+  try {
+    await client.connect();
+    const db = client.db(databaseName);
+    const now = new Date();
+
+    await db.collection("books").updateOne(
     { slug: bookSlug },
     {
       $set: {
@@ -61,12 +65,12 @@ try {
     { upsert: true }
   );
 
-  const collection = db.collection("chapters");
-  await collection.createIndex({ bookSlug: 1, slug: 1 }, { unique: true });
-  await collection.createIndex({ bookSlug: 1, number: 1 }, { unique: true });
+    const collection = db.collection("chapters");
+    await collection.createIndex({ bookSlug: 1, slug: 1 }, { unique: true });
+    await collection.createIndex({ bookSlug: 1, number: 1 }, { unique: true });
 
-  if (chapters.length > 0) {
-    await collection.bulkWrite(
+    if (chapters.length > 0) {
+      await collection.bulkWrite(
       chapters.map((chapter) => ({
         updateOne: {
           filter: { bookSlug, slug: chapter.slug },
@@ -77,10 +81,16 @@ try {
           upsert: true,
         },
       }))
-    );
-  }
+      );
+    }
 
-  console.log(`Seeded ${chapters.length} chapters into ${databaseName}.chapters.`);
-} finally {
-  await client.close();
+    console.log(`Seeded ${chapters.length} chapters into ${databaseName}.chapters.`);
+  } finally {
+    await client.close();
+  }
 }
+
+main().catch((error) => {
+  console.error(error instanceof Error ? error.message : error);
+  process.exitCode = 1;
+});
